@@ -84,19 +84,33 @@ Get-ChildItem "$src\*.png" | % {
 
 ## Deploy
 
-**Drag and drop** — open <https://app.netlify.com/drop> and drag this folder onto
-the page.
-
-**CLI**
+Pushing to `main` deploys. Netlify watches
+[Eminence14/victor-ibidunmoye-cad](https://github.com/Eminence14/victor-ibidunmoye-cad)
+and publishes every commit to <https://cad.victoribidunmoye.me>.
 
 ```bash
-netlify deploy --prod --dir .
+git add -A
+git commit -m "your message"
+git push
 ```
 
-`netlify.toml` sets `publish = "."` with no build command.
+`netlify.toml` sets `publish = "."` with no build command, so Netlify serves the
+repo root exactly as committed — no build step, nothing to configure.
 
-You can safely leave `All Renders/` out of the upload — the site never reads it.
-Dropping it saves roughly 240 MB per deploy.
+**Do not drag-and-drop to Netlify any more.** A manual drop creates a deploy that
+Git knows nothing about, so the next push silently reverts it. The repo is the
+source of truth.
+
+`All Renders/` is gitignored — the site never reads it, and keeping it out saves
+roughly 240 MB per deploy.
+
+| Where | What |
+|-------|------|
+| Live site | <https://cad.victoribidunmoye.me> |
+| Netlify fallback | <https://victor-ibidunmoye-cad.netlify.app> |
+| Repo | `Eminence14/victor-ibidunmoye-cad` |
+| Production branch | `main` |
+| DNS | Namecheap — `cad` CNAME → `victor-ibidunmoye-cad.netlify.app.` |
 
 To preview locally:
 
