@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Victor Ibidunmoye — Mechanical &amp; Product Design Engineer</title>
+<title>Victor Ibidunmoye | Mechanical &amp; Product Design Engineer</title>
 <meta name="description" content="Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.">
 <meta name="author" content="Victor Ibidunmoye">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#070A0F">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Victor Ibidunmoye — Mechanical &amp; Product Design Engineer">
+<meta property="og:title" content="Victor Ibidunmoye | Mechanical &amp; Product Design Engineer">
 <meta property="og:description" content="Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.">
-<!-- TODO: replace with a 1200×630 share image -->
-<meta property="og:image" content="assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg">
+<meta property="og:url" content="https://cad.victoribidunmoye.me/">
+<meta property="og:image" content="https://cad.victoribidunmoye.me/assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Victor Ibidunmoye — Mechanical &amp; Product Design Engineer">
+<meta name="twitter:image" content="https://cad.victoribidunmoye.me/assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg">
+<meta name="twitter:title" content="Victor Ibidunmoye | Mechanical &amp; Product Design Engineer">
 <meta name="twitter:description" content="Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23070A0F'/%3E%3Ctext%20x='16'%20y='22'%20font-family='ui-monospace,SFMono-Regular,Menlo,monospace'%20font-size='13'%20font-weight='600'%20fill='%23F4F5F7'%20text-anchor='middle'%3EVI%3C/text%3E%3C/svg%3E">
@@ -26,7 +27,7 @@
 
 <style>
 /* ============================================================
-   Tokens — terminal navy
+   Tokens: terminal navy
    ============================================================ */
 :root{
   --bg:             #070A0F;
@@ -38,7 +39,7 @@
   --grid-line:      rgba(255,255,255,0.030);
   --text:           #F4F5F7;
   --text-2:         #A7ABB2;
-  --text-3:         #8A8F98;   /* every small label — clears 4.5:1 on all four surfaces */
+  --text-3:         #8A8F98;   /* every small label; clears 4.5:1 on all four surfaces */
   --accent:         #3D9BFF;
   /* Currently unused, kept so the palette stays documented:
      --text-dim (#5E636B) is only legal at >=28px (3.28:1) and nothing that
@@ -88,7 +89,7 @@ body{
 }
 body.is-locked{ overflow:hidden }
 
-/* Blueprint grid — fixed, non-animated, behind everything */
+/* Blueprint grid: fixed, non-animated, behind everything */
 body::before{
   content:"";
   position:fixed; inset:0;
@@ -196,7 +197,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   align-items:center;
 }
 
-/* Display level — the name carries the page, the role steps down a level.
+/* Display level: the name carries the page, the role steps down a level.
    Kept at 64px max: past that the role wraps and the hierarchy collapses. */
 .hero__name{
   margin:0;
@@ -297,7 +298,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 
 /* ============================================================
-   Selected work — bento of cards, each opens a full detail view
+   Selected work: bento of cards, each opens a full detail view
    ============================================================ */
 .work__head{
   display:flex; align-items:baseline; justify-content:space-between;
@@ -369,7 +370,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   width:100%; height:100%; object-fit:cover;
   transition:transform .7s var(--ease);
 }
-/* the renders sit on a warm backdrop — settle it into the dark page */
+/* the renders sit on a warm backdrop, so settle it into the dark page */
 .tile__media::after{
   content:""; position:absolute; inset:0; pointer-events:none;
   background:radial-gradient(125% 100% at 50% 38%, transparent 55%, rgba(7,10,15,.38) 100%);
@@ -405,7 +406,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   .stage:hover{ transform:scale(1.03) rotate(-3deg) }
 }
 
-/* chromatic glitch via text-shadow — no duplicated text for screen readers */
+/* chromatic glitch via text-shadow, so no duplicated text for screen readers */
 @keyframes glitch{
   0%,100%{ text-shadow:none }
   20%{ text-shadow:-2px 0 var(--accent), 2px 0 rgba(255,255,255,.55) }
@@ -591,7 +592,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 
 /* ============================================================
-   Reduced motion — must stay last
+   Reduced motion: must stay last
    ============================================================ */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto }
@@ -647,8 +648,8 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     <h2 class="eyebrow" id="about-h">About</h2>
     <div class="about__inner">
       <div class="about__text">
-        <p class="about__lead">Most of what I design takes work off someone's hands: a pounder that replaces hours of pounding by arm, a pump that lifts water where there's no power, a grinder that runs on gravity alone.</p>
-        <p class="about__body">Machines that hold up where the grid doesn't, and that a local workshop can actually build. I carry every design through to the assemblies, tolerances and GD&amp;T it needs in SolidWorks, because a drawing that can't be made solves nothing. I learned that fabricating aluminium at Aseyori Ventures and repairing industrial machinery at Polar Machines.</p>
+        <p class="about__lead">I design machines that take work off people's hands. A pounder that saves hours of pounding by arm. A pump that lifts water where there's no electricity. A grinder that runs on gravity.</p>
+        <p class="about__body">They have to survive where the grid doesn't, and a local workshop has to be able to build them. I learned why on the shop floor, fixing machines before I ever drew one.</p>
       </div>
       <figure class="about__img">
         <img src="assets/img/portfolio/Mechanical%20Painter/1-800.jpg"
@@ -664,7 +665,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
       <h2 class="eyebrow" id="work-h">Selected work</h2>
       <span class="mono" id="work-count"></span>
     </div>
-    <p class="work__intro">Machines, products and manufacturing drawings — each project carried from concept to build-ready CAD.</p>
+    <p class="work__intro">Machines, products and manufacturing drawings. Each project carried from concept to build-ready CAD.</p>
     <ul class="bento" id="grid"></ul>
   </section>
 
@@ -713,21 +714,20 @@ button{ font:inherit; color:inherit; background:none; border:0 }
         <h3 class="eyebrow">Education</h3>
         <div class="res__item">
           <p class="res__role">B.Sc Mechanical Engineering</p>
-          <p class="res__meta mono">2019–2026 · University of Ibadan, Nigeria</p>
+          <p class="res__meta mono">2019-2026 · University of Ibadan, Nigeria</p>
           <p class="res__note">Focus: Advanced Thermodynamics, Machine Design, and Manufacturing Processes.</p>
         </div>
 
         <h3 class="eyebrow">Internships</h3>
         <div class="res__item">
-          <p class="res__role">Product Design Intern</p>
-          <p class="res__meta mono">Costech Computers</p>
-          <p class="res__note">2D drafts/annotations in AutoCAD, 3D models &amp; prototypes in Fusion 360, technical documentation.</p>
+          <p class="res__role">MEP &amp; Design Intern</p>
+          <p class="res__meta mono">Palfe Associates · Ibadan, Nigeria · 2024</p>
+          <p class="res__note">MEP layouts in AutoCAD &amp; Revit, clash-detection reports, on-site compliance checks.</p>
         </div>
         <div class="res__item">
-          <p class="res__role">MEP &amp; Design Intern</p>
-          <!-- TODO: Insert City --><!-- TODO: Insert Year -->
-          <p class="res__meta mono">Palfe Associates · [Insert City], Nigeria · [Insert Year]</p>
-          <p class="res__note">MEP layouts in AutoCAD &amp; Revit, clash-detection reports, on-site compliance checks.</p>
+          <p class="res__role">Product Design Intern</p>
+          <p class="res__meta mono">Costech Computers · Lagos, Nigeria · 2023</p>
+          <p class="res__note">2D drafts/annotations in AutoCAD, 3D models &amp; prototypes in Fusion 360, technical documentation.</p>
         </div>
       </div>
 
@@ -735,12 +735,12 @@ button{ font:inherit; color:inherit; background:none; border:0 }
         <h3 class="eyebrow">Professional experience</h3>
         <div class="res__item">
           <p class="res__role">Sheet Metal Works Engineer</p>
-          <p class="res__meta mono">Aseyori Ventures · Barika, Nigeria · 2022–2023</p>
+          <p class="res__meta mono">Aseyori Ventures · Ibadan, Nigeria · 2022-2023</p>
           <p class="res__note">Aluminum fabrication to tight tolerances; optimized workflows to cut waste; enforced QC.</p>
         </div>
         <div class="res__item">
           <p class="res__role">Mechanical Machines Intern</p>
-          <p class="res__meta mono">Polar Machines · Ekiti State, Nigeria · 2019–2020</p>
+          <p class="res__meta mono">Polar Machines · Ekiti, Nigeria · 2019-2020</p>
           <p class="res__note">Diagnosed and repaired industrial machinery; streamlined workshop operations.</p>
         </div>
       </div>
@@ -915,7 +915,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
       role: "Role: Mechanism adaptation, CAD, prototyping. Focus: Renewable energy efficiency." }
   ];
 
-  /* Folder names contain spaces — encode every path segment. */
+  /* Folder names contain spaces, so encode every path segment. */
   function src(p, n, size) {
     return BASE + encodeURIComponent(p.folder) + '/' + n + '-' + size + '.jpg';
   }
@@ -1130,7 +1130,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     dt.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('is-locked');
     dtShots.innerHTML = '';          // stop offscreen renders downloading
-    // Return focus to the card for the project actually being viewed — after
+    // Return focus to the card for the project actually being viewed, after
     // paging with prev/next that is no longer the card that opened the overlay.
     var landing = grid.querySelector('.tile[data-i="' + current + '"]') || opener;
     if (landing) landing.focus();
