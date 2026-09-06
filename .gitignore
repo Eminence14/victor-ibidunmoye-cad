@@ -13,3 +13,6 @@ desktop.ini
 
 # Original render library (large source PNGs, not deployed)
 All Renders/
+
+# Claude Code scratch output
+Claude outputs/
