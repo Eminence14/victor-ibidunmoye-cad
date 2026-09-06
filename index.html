@@ -41,10 +41,9 @@
   --text-2:         #A7ABB2;
   --text-3:         #8A8F98;   /* every small label; clears 4.5:1 on all four surfaces */
   --accent:         #3D9BFF;
-  /* Currently unused, kept so the palette stays documented:
-     --text-dim (#5E636B) is only legal at >=28px (3.28:1) and nothing that
-     large is greyed out any more; --signal (#30D158) was the availability
-     dot; --hairline-lit was for card strokes, which the fills replaced. */
+  /* --signal is the availability dot, --hairline-lit the dock stroke.
+     --text-dim (#5E636B) stays documented but unused: at 3.28:1 it is only
+     legal at >=28px, and nothing that large is greyed out. */
   --text-dim:       #5E636B;
   --signal:         #30D158;
   --radius-card:    22px;
@@ -58,7 +57,7 @@
   --container: 1200px;
   --pad: 24px;
   --section: clamp(72px, 10vw, 140px);
-  --dock-space: 96px;
+  --dock-space: 108px;
 }
 
 /* ============================================================
@@ -160,21 +159,24 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   transform:translateX(-50%);
   max-width:calc(100% - 24px);
   border-radius:var(--radius-pill);
-  background:rgba(10,14,20,.72);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
-  backdrop-filter:blur(20px) saturate(180%);
-  border:1px solid transparent;
+  /* Near-opaque, not tinted glass: the dock sits over bright renders as often
+     as over the page background, and 72% left it unreadable on both. */
+  background:rgba(9,13,19,.92);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
+  border:1px solid var(--hairline-lit);
+  box-shadow:0 14px 44px rgba(0,0,0,.62);
   transition:border-color .45s var(--ease), box-shadow .45s var(--ease);
 }
 .dock.is-lifted{
-  border-color:var(--hairline);
-  box-shadow:0 10px 34px rgba(0,0,0,.6);
+  border-color:var(--hairline-lit);
+  box-shadow:0 16px 50px rgba(0,0,0,.74);
 }
-.dock__list{ display:flex; align-items:center; gap:4px; padding:6px }
+.dock__list{ display:flex; align-items:center; gap:4px; padding:7px }
 .dock__list a{
   display:block;
-  padding:10px 16px;
-  font-family:var(--mono); font-size:.8125rem; font-weight:500;
+  padding:12px 22px;
+  font-family:var(--mono); font-size:.875rem; font-weight:500;
   color:var(--text-3);
   text-decoration:none; white-space:nowrap;
   border-radius:var(--radius-pill);
@@ -183,74 +185,112 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 .dock__list a:hover{ color:var(--text) }
 .dock__list a[aria-current="true"]{ color:var(--accent) }
 @media (max-width:420px){
-  .dock__list a{ padding:10px 11px; font-size:.75rem }
+  .dock__list a{ padding:11px 13px; font-size:.8125rem }
 }
 
 /* ============================================================
    Hero
    ============================================================ */
-.hero{ padding-block:clamp(64px, 9vw, 120px) clamp(48px, 6vw, 88px) }
-.hero__inner{
-  display:grid;
-  grid-template-columns:minmax(0, 1fr) minmax(0, 0.92fr);
-  gap:clamp(32px, 5vw, 64px);
+.hero{
+  position:relative;
+  display:flex;
   align-items:center;
+  overflow:hidden;
+  min-height:clamp(540px, 86vh, 820px);
+  min-height:clamp(540px, 86svh, 820px);
+  padding-block:clamp(84px, 12vh, 128px) clamp(92px, 14vh, 156px);
 }
+/* Full-bleed render behind the type, dimmed and faded at both ends so the page
+   background carries straight through into the section below. */
+.hero__bg{ position:absolute; inset:0; z-index:0; pointer-events:none }
+.hero__bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.hero__bg-sharp{ opacity:.30 }
+/* The same render, defocused, masked to a soft ellipse over the type. This is
+   the blur behind the words: a lens falloff with no edge to it, rather than a
+   panel with a boundary you can see. */
+.hero__bg-blur{
+  opacity:.34;
+  filter:blur(26px);
+  transform:scale(1.06);          /* hides the blur bleeding in at the edges */
+  -webkit-mask-image:radial-gradient(64% 52% at 30% 45%, #000 24%, rgba(0,0,0,0) 100%);
+  mask-image:radial-gradient(64% 52% at 30% 45%, #000 24%, rgba(0,0,0,0) 100%);
+}
+.hero__bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(to right, rgba(7,10,15,.94) 0%, rgba(7,10,15,.62) 38%, rgba(7,10,15,.08) 82%),
+    linear-gradient(to bottom, var(--bg) 0%, rgba(7,10,15,0) 46%, var(--bg) 100%);
+}
+@media (max-width:760px){
+  .hero__bg img{ opacity:.20 }
+  .hero__bg::after{
+    background:linear-gradient(to bottom, var(--bg) 0%, rgba(7,10,15,.42) 38%, rgba(7,10,15,.74) 76%, var(--bg) 100%);
+  }
+}
+.hero__inner{ position:relative; z-index:1 }
 
-/* Display level: the name carries the page, the role steps down a level.
-   Kept at 64px max: past that the role wraps and the hierarchy collapses. */
-.hero__name{
-  margin:0;
-  font-size:clamp(2.25rem, 5vw, 4rem);
-  font-weight:600;
-  letter-spacing:-0.035em;
-  line-height:1.02;
+.hero__status{
+  display:inline-flex; align-items:center; gap:9px;
+  margin:0 0 clamp(20px, 3.5vw, 32px);
+  padding:8px 16px;
+  border-radius:var(--radius-pill);
+  border:1px solid var(--hairline);
+  background:rgba(255,255,255,.05);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  font-size:.875rem; font-weight:500; line-height:1.2;
   color:var(--text);
 }
-.hero__role{
-  display:block;
-  margin-top:12px;
-  /* Floor of 20px keeps the role clearly above the 18px lede on small
-     screens, where a shared size would leave weight doing all the work. */
-  font-size:clamp(1.25rem, 1.9vw, 1.625rem);
-  font-weight:500;
-  letter-spacing:-0.015em;
-  line-height:1.25;
-  color:var(--text-2);
+.hero__dot{
+  width:8px; height:8px; flex:none;
+  border-radius:50%;
+  background:var(--signal);
+  box-shadow:0 0 0 3px rgba(48,209,88,.18);
+}
+
+/* 96px at desktop matches the previous landing page. The br is dropped under
+   640px so the line wraps naturally instead of overflowing. */
+.hero__title{
+  margin:0;
+  font-size:clamp(2.25rem, 9vw, 6rem);
+  font-weight:700;
+  letter-spacing:-0.045em;
+  line-height:1.04;
+  color:var(--text);
+}
+/* "Design" stays transparent so the defocused backdrop reads straight through
+   it. The hairline highlight gives the letterforms an etched-glass edge without
+   putting a panel behind them. */
+.hero__title-dim{
+  color:rgba(255,255,255,.38);
+  text-shadow:0 1px 0 rgba(255,255,255,.10), 0 0 26px rgba(255,255,255,.06);
 }
 
 .hero__sub{
-  margin:26px 0 0;
-  /* 92 characters. 54ch breaks it into two even ~46-char lines; widening
-     would give a ragged 58/34. `balance` holds that even break at any width. */
-  max-width:54ch;
+  margin:clamp(20px, 3vw, 28px) 0 0;
+  max-width:46ch;
   text-wrap:balance;
-  font-size:1.125rem;
+  font-size:clamp(1.0625rem, 1.5vw, 1.5rem);
   font-weight:400;
-  line-height:1.65;
+  line-height:1.6;
   color:var(--text-2);
 }
 
-.stage{
-  position:relative;
-  margin:0;
-  border-radius:var(--radius-media);
-  overflow:hidden;
-  background:var(--surface);
-  aspect-ratio:4 / 3;
-  transition:transform .6s var(--ease);
+.hero__cta{
+  display:inline-block;
+  margin-top:clamp(26px, 4vw, 38px);
+  padding:16px 32px;
+  border-radius:var(--radius-pill);
+  background:var(--text);
+  color:var(--bg);
+  font-size:.875rem; font-weight:600;
+  text-decoration:none;
+  transition:transform .4s var(--ease), background-color .4s var(--ease);
 }
-.stage img{ width:100%; height:100%; object-fit:cover }
-/* The renders sit on a warm studio backdrop; a soft vignette settles that
-   bright plate into the dark page without dulling the subject. */
-.stage::after{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(125% 100% at 50% 38%, transparent 52%, rgba(7,10,15,.42) 100%);
-}
+.hero__cta:hover{ background:#fff; transform:translateY(-2px) }
 
-@media (max-width:900px){
-  .hero__inner{ grid-template-columns:minmax(0,1fr) }
-  .stage{ order:-1 }
+@media (max-width:640px){
+  .hero__title br{ display:none }
 }
 
 /* ============================================================
@@ -387,23 +427,12 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   color:var(--text);
 }
 .sp-r2 .tile__title{ font-size:clamp(1.25rem, 2vw, 1.75rem) }
-.tile__foot{
-  display:flex; align-items:flex-end; justify-content:space-between;
-  gap:14px; margin-top:auto; padding-top:12px;
-}
-.tile__desc{ margin:0; font-size:.9375rem; line-height:1.5; color:var(--text-2) }
-.tile__meta{
-  flex:none;
-  font-family:var(--mono); font-size:.75rem; font-weight:500;
-  color:var(--text-3); white-space:nowrap;
-}
 
 @media (hover: hover){
   .tile:hover{ background:var(--surface-hover); transform:translateY(-2px) }
   .tile:hover::before{ opacity:1 }
   .tile:hover .tile__media img{ transform:scale(1.04) }
   .tile:hover .tile__title{ animation:glitch .45s steps(2) 1 }
-  .stage:hover{ transform:scale(1.03) rotate(-3deg) }
 }
 
 /* chromatic glitch via text-shadow, so no duplicated text for screen readers */
@@ -443,7 +472,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 
 /* ============================================================
-   Résumé
+   Resume
    ============================================================ */
 .res{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px, 4vw, 56px) }
 @media (max-width:820px){ .res{ grid-template-columns:minmax(0,1fr) } }
@@ -461,6 +490,25 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   padding:28px;
   border-radius:var(--radius-card);
   background:var(--surface-sunken);
+}
+/* The name lives here rather than in the hero: this block already reads as a
+   signature, and the hero carries the discipline instead. */
+.contact__ident{
+  margin-bottom:24px;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--hairline);
+}
+.contact__name{
+  margin:0;
+  font-size:clamp(1.25rem, 2.2vw, 1.625rem);
+  font-weight:600; letter-spacing:-0.02em;
+  color:var(--text);
+}
+.contact__role{
+  margin:6px 0 0;
+  font-family:var(--mono); font-size:.8125rem; font-weight:500;
+  letter-spacing:.04em;
+  color:var(--text-3);
 }
 .contact__row{
   display:flex; align-items:center; justify-content:space-between;
@@ -606,7 +654,6 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   .tile:hover .tile__media img{ transform:none }
   .tile:hover .tile__title{ animation:none }
   .tile::before{ display:none }
-  .stage:hover{ transform:none }
 }
 </style>
 </head>
@@ -618,7 +665,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   <ul class="dock__list">
     <li><a href="#top">Home</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#resume">Résumé</a></li>
+    <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -626,20 +673,19 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 <main>
 
   <!-- ================= Hero ================= -->
-  <section class="wrap hero" id="top" aria-labelledby="hero-title">
-    <div class="hero__inner">
-      <div>
-        <h1 class="hero__name" id="hero-title">Victor Ibidunmoye.<span class="hero__role">Mechanical &amp; Product Design Engineer.</span></h1>
-
-        <p class="hero__sub">Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.</p>
-      </div>
-
-      <figure class="stage">
-        <img src="assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg"
-             width="1600" height="1236"
-             fetchpriority="high" loading="eager" decoding="async"
-             alt="Automatic gutter cleaner render">
-      </figure>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true">
+      <img class="hero__bg-sharp" src="assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg"
+           width="1600" height="1236"
+           fetchpriority="high" loading="eager" decoding="async" alt="">
+      <img class="hero__bg-blur" src="assets/img/portfolio/Automatic%20Gutter%20Cleaner/1-1600.jpg"
+           width="1600" height="1236" loading="eager" decoding="async" alt="">
+    </div>
+    <div class="wrap hero__inner">
+      <p class="hero__status"><span class="hero__dot" aria-hidden="true"></span>Available for New Roles</p>
+      <h1 class="hero__title" id="hero-title">Mechanical <br>&amp; Product <span class="hero__title-dim">Design</span></h1>
+      <p class="hero__sub">Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.</p>
+      <a class="hero__cta" href="#contact">Get in Touch</a>
     </div>
   </section>
 
@@ -648,8 +694,8 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     <h2 class="eyebrow" id="about-h">About</h2>
     <div class="about__inner">
       <div class="about__text">
-        <p class="about__lead">I design machines that take work off people's hands. A pounder that saves hours of pounding by arm. A pump that lifts water where there's no electricity. A grinder that runs on gravity.</p>
-        <p class="about__body">They have to survive where the grid doesn't, and a local workshop has to be able to build them. I learned why on the shop floor, fixing machines before I ever drew one.</p>
+        <p class="about__lead">I turn mechanical concepts into designs a workshop can build.</p>
+        <p class="about__body">Each project runs from concept to production-ready CAD: assemblies, tolerances and GD&amp;T in SolidWorks. I favour simple mechanisms and locally available components, so manufacturing needs no specialist tooling.</p>
       </div>
       <figure class="about__img">
         <img src="assets/img/portfolio/Mechanical%20Painter/1-800.jpg"
@@ -706,9 +752,9 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     </div>
   </section>
 
-  <!-- ================= Résumé ================= -->
+  <!-- ================= Resume ================= -->
   <section class="wrap section" id="resume" aria-labelledby="res-h">
-    <h2 class="eyebrow" id="res-h">Résumé</h2>
+    <h2 class="eyebrow" id="res-h">Resume</h2>
     <div class="res">
       <div class="res__col">
         <h3 class="eyebrow">Education</h3>
@@ -751,6 +797,10 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   <section class="wrap section" id="contact" aria-labelledby="contact-h">
     <h2 class="eyebrow" id="contact-h">Get in touch</h2>
     <div class="contact__band">
+      <div class="contact__ident">
+        <p class="contact__name">Victor Ibidunmoye</p>
+        <p class="contact__role">Mechanical &amp; Product Design Engineer</p>
+      </div>
       <div class="contact__row">
         <div class="contact__mail">
           <a href="mailto:victoribidunmoye@gmail.com">victoribidunmoye@gmail.com</a>
@@ -957,10 +1007,6 @@ button{ font:inherit; color:inherit; background:none; border:0 }
         '<span class="tile__body">' +
           '<span class="tile__cat">' + esc(p.cat) + '</span>' +
           '<span class="tile__title">' + esc(p.title) + '</span>' +
-          '<span class="tile__foot">' +
-            '<span class="tile__desc">' + esc(p.desc) + '</span>' +
-            '<span class="tile__meta">' + p.imgs.length + ' img</span>' +
-          '</span>' +
         '</span>' +
       '</button>' +
     '</li>';
