@@ -338,7 +338,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 
 /* ============================================================
-   Selected work: bento of cards, each opens a full detail view
+   Selected work: category sections of cards, each opens a case study
    ============================================================ */
 .work__head{
   display:flex; align-items:baseline; justify-content:space-between;
@@ -349,31 +349,6 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   margin:0 0 32px;
   max-width:62ch;
   color:var(--text-2);
-}
-
-.bento{
-  display:grid;
-  grid-template-columns:repeat(12, minmax(0, 1fr));
-  grid-auto-rows:minmax(210px, auto);
-  gap:16px;
-}
-.bento > li{ grid-column:span 4; grid-row:span 1; min-width:0 }
-.bento > li.sp-c8{ grid-column:span 8 }
-.bento > li.sp-c12{ grid-column:span 12 }
-.bento > li.sp-r2{ grid-row:span 2 }
-
-@media (max-width:1024px){
-  .bento{ grid-template-columns:repeat(6, minmax(0, 1fr)) }
-  .bento > li{ grid-column:span 3 }
-  .bento > li.sp-c8,
-  .bento > li.sp-c12{ grid-column:span 6 }
-}
-@media (max-width:680px){
-  .bento{ grid-template-columns:minmax(0, 1fr); gap:12px }
-  .bento > li,
-  .bento > li.sp-c8,
-  .bento > li.sp-c12{ grid-column:span 1 }
-  .bento > li.sp-r2{ grid-row:span 1 }
 }
 
 .tile{
@@ -405,7 +380,6 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   background:var(--surface-sunken);
   aspect-ratio:4 / 3;
 }
-.sp-r2 .tile__media, .sp-c12 .tile__media{ aspect-ratio:16 / 9 }
 .tile__media img{
   width:100%; height:100%; object-fit:cover;
   transition:transform .7s var(--ease);
@@ -426,7 +400,6 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   font-weight:600; letter-spacing:-0.02em; line-height:1.25;
   color:var(--text);
 }
-.sp-r2 .tile__title{ font-size:clamp(1.25rem, 2vw, 1.75rem) }
 
 @media (hover: hover){
   .tile:hover{ background:var(--surface-hover); transform:translateY(-2px) }
@@ -640,6 +613,91 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 
 /* ============================================================
+   Work categories and case studies
+   ============================================================ */
+.catnav{ margin:0 0 clamp(36px, 5vw, 56px) }
+.catnav ul{ display:flex; flex-wrap:wrap; gap:10px }
+.catnav a{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 16px;
+  border-radius:var(--radius-pill);
+  background:var(--surface);
+  font-size:.9375rem; font-weight:500; color:var(--text-2);
+  transition:color .35s var(--ease), background-color .35s var(--ease);
+}
+.catnav a:hover{ color:var(--text); background:var(--surface-hover) }
+.catnav__n{ font-family:var(--mono); font-size:.75rem; color:var(--text-3) }
+
+.cat{ scroll-margin-top:96px }
+.cat + .cat{ margin-top:clamp(56px, 8vw, 96px) }
+.cat__head{
+  display:flex; flex-direction:column; gap:8px;
+  margin-bottom:22px; padding-top:22px;
+  border-top:1px solid var(--hairline);
+}
+.cat__title{
+  margin:0;
+  font-size:clamp(1.375rem, 2.6vw, 2rem);
+  font-weight:600; letter-spacing:-0.025em; line-height:1.15;
+  color:var(--text);
+}
+.cat__blurb{ margin:0; max-width:62ch; color:var(--text-2); line-height:1.6 }
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+.grid > li{ min-width:0 }
+@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2, minmax(0, 1fr)) } }
+@media (max-width:640px){ .grid{ grid-template-columns:minmax(0, 1fr); gap:12px } }
+.tile__sum{
+  font-size:.9375rem; line-height:1.5; color:var(--text-2);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+.detail__tags{ margin-top:18px }
+.detail__hero{ margin-top:30px }
+.cs-wrap{ margin-top:clamp(36px, 5vw, 56px); max-width:70ch }
+.cs{ margin-top:clamp(30px, 4vw, 44px) }
+.cs:first-child{ margin-top:0 }
+.cs__h{
+  margin:0 0 14px;
+  font-family:var(--mono); font-size:.75rem; font-weight:500;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--text-3);
+}
+.cs p{ margin:0 0 14px; line-height:1.7; color:var(--text-2) }
+.cs p:last-child{ margin-bottom:0 }
+.cs strong{ color:var(--text); font-weight:600 }
+.cs__list{ display:flex; flex-direction:column; gap:12px }
+.cs__list li{
+  position:relative; padding-left:20px;
+  line-height:1.65; color:var(--text-2);
+}
+.cs__list li::before{
+  content:""; position:absolute; left:2px; top:.72em;
+  width:6px; height:6px; border-radius:50%; background:var(--accent);
+}
+.cs__req{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px }
+.cs__req > div{ padding:16px; border-radius:var(--radius-media); background:var(--surface) }
+.cs__req dt{ font-weight:600; color:var(--text); margin-bottom:6px }
+.cs__req dd{ margin:0; font-size:.9375rem; line-height:1.6; color:var(--text-2) }
+.cs__dec{ padding:20px 0; border-top:1px solid var(--hairline) }
+.cs__dec:first-of-type{ border-top:0; padding-top:0 }
+.cs__dec h4{
+  margin:0 0 10px;
+  font-size:1.0625rem; font-weight:600; letter-spacing:-0.01em; line-height:1.35;
+  color:var(--text);
+}
+.cs__caveat{
+  margin:clamp(34px, 5vw, 52px) 0 0 !important;
+  padding:16px 18px;
+  border-radius:var(--radius-media);
+  background:var(--surface);
+  font-size:.875rem !important; color:var(--text-3) !important;
+}
+
+/* ============================================================
    Reduced motion: must stay last
    ============================================================ */
 @media (prefers-reduced-motion: reduce){
@@ -711,8 +769,8 @@ button{ font:inherit; color:inherit; background:none; border:0 }
       <h2 class="eyebrow" id="work-h">Selected work</h2>
       <span class="mono" id="work-count"></span>
     </div>
-    <p class="work__intro">Machines, products and manufacturing drawings. Each project carried from concept to build-ready CAD.</p>
-    <ul class="bento" id="grid"></ul>
+    <p class="work__intro">Grouped by the kind of problem each one solves. Every project opens as a case study: the problem, the requirements, the design decisions and how it is built.</p>
+    <div id="cats"></div>
   </section>
 
   <!-- ================= Capabilities ================= -->
@@ -854,8 +912,13 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     <h2 class="detail__title" id="detail-title"></h2>
     <p class="detail__desc" id="detail-desc"></p>
     <p class="detail__role" id="detail-role"></p>
-    <p class="detail__count mono" id="detail-count"></p>
-    <div class="detail__shots" id="detail-shots"></div>
+    <ul class="chips detail__tags" id="detail-tags"></ul>
+    <div class="detail__shots detail__hero" id="detail-hero"></div>
+    <div class="cs-wrap" id="detail-body"></div>
+    <div id="detail-more">
+      <p class="detail__count mono" id="detail-count"></p>
+      <div class="detail__shots" id="detail-shots"></div>
+    </div>
 
     <nav class="detail__nav" aria-label="Project navigation">
       <button class="detail__navbtn" type="button" id="detail-prev">
@@ -902,87 +965,35 @@ button{ font:inherit; color:inherit; background:none; border:0 }
 }
 </script>
 
+<script src="assets/js/projects.js"></script>
 <script>
 (function () {
   'use strict';
 
   /* ============================================================
-     Project data. desc / role are verbatim from the live site.
-     `folder` is the real render-library folder name; `imgs` are the
-     basenames in gallery order (curated cover first). Web-sized
-     derivatives live at assets/img/portfolio/<folder>/<n>-{800,1600}.jpg
+     Project data lives in assets/js/projects.js (window.PROJECTS,
+     window.CATEGORIES). `folder` is the render-library folder; each
+     entry in `imgs` is { n, alt } and derivatives exist at
+     assets/img/portfolio/<folder>/<n>-{800,1600}.jpg
      ============================================================ */
   var BASE = "assets/img/portfolio/";
-  var projects = [
-    { title: "Two Stroke Engine with Compressor", cat: "Machines",
-      folder: "2 Stroke Engine With Compressor", imgs: [1, 4, 2, 3, 5],
-      desc: "Compact engine design integrating crankshaft and compressor. Used for space-saving, efficient industrial systems.",
-      role: "Role: Concept design, CAD modeling. Focus: Manufacturability and dual-function engineering." },
-
-    { title: "Industrial Ginger Peeler", cat: "Machines",
-      folder: "Ginger Peeling Machine", imgs: [2, 6, 1, 3, 4, 5, 7],
-      desc: "High-capacity abrasive drum uses centrifugal force to peel uniformly while preserving flesh.",
-      role: "Role: Drive sizing, fabrication, structural analysis. Focus: Throughput and food-grade hygiene standards." },
-
-    { title: "Gravity Powered Grinder", cat: "Machines",
-      folder: "Gravity Powered Grinder", imgs: [1, 4, 2, 3, 5, 6],
-      desc: "Grinder powered by gravity using weights on a shaft. Energy-efficient design requiring no external power.",
-      role: "Role: Concept design, mechanism simulation. Focus: Energy efficiency and feasibility." },
-
-    { title: "Foot Operated Water Pump", cat: "Machines",
-      folder: "Foot Operated Water Pump", imgs: [1, 5, 2, 3, 4],
-      desc: "Pedal-powered water pump using bevel gears and crank-slider. Enables water access without electricity.",
-      role: "Role: Mechanism design, CAD, prototyping. Focus: Sustainability and reliability." },
-
-    { title: "Zenith Knife", cat: "Products",
-      folder: "Zenith Knife", imgs: [4, 2, 1, 5],
-      desc: "Motorized kitchen knife with a crank-slider rotary blade. Features continuous rotation for fast, safe cutting.",
-      role: "Role: Mechanism design, CAD, prototyping. Focus: User safety and manufacturability." },
-
-    { title: "Dual-Sieve Juice Extractor", cat: "Products",
-      folder: "Juice Extractor", imgs: [1, 2, 3, 4, 5],
-      desc: "Blender redesigned with dual-layer sieve and outflow pipe. Ensures efficient juice extraction.",
-      role: "Role: Product redesign, CAD, prototyping. Focus: Functionality and user experience." },
-
-    { title: "Adjustable Ceiling Cleaner", cat: "Products",
-      folder: "Adjustable Ceiling Cleaner", imgs: [1, 5, 2, 3, 4],
-      desc: "Cleaning tool with retractable arm and rotating brush. Extends reach to remove dirt from elevated surfaces.",
-      role: "Role: Product design, CAD, prototyping. Focus: Accessibility and effectiveness." },
-
-    { title: "Diesel Generator Tank Washer", cat: "Others",
-      folder: "Gen Washer", imgs: [1, 3, 2, 4],
-      desc: "Rotating brush system for cleaning diesel generator tanks. Improves reliability and reduces manual labor.",
-      role: "Role: Mechanism design, CAD, prototyping. Focus: Maintenance efficiency and manufacturability." },
-
-    { title: "Super Pounder", cat: "Others",
-      folder: "Super Pounder", imgs: [3, 1, 2],
-      desc: "Motor-driven machine for pounding yam using a crank-slider mechanism. Preserves tradition while reducing labor.",
-      role: "Role: Mechanism design, CAD, prototyping. Focus: Cultural fit and efficiency." },
-
-    { title: "Solar Panel Wiper", cat: "Others",
-      folder: "Solar Panel Wiper", imgs: [1, 2, 3, 4, 5],
-      desc: "Automated wiper system for rooftop solar panels. Adapts car wiper tech to maintain efficiency.",
-      role: "Role: Mechanism adaptation, CAD, prototyping. Focus: Renewable energy efficiency." }
-  ];
+  var projects = window.PROJECTS || [];
+  var CATS = window.CATEGORIES || [];
+  var CAVEAT = window.CAVEAT || '';
 
   /* Folder names contain spaces, so encode every path segment. */
-  function src(p, n, size) {
-    return BASE + encodeURIComponent(p.folder) + '/' + n + '-' + size + '.jpg';
+  function src(p, img, size) {
+    return BASE + encodeURIComponent(p.folder) + '/' + img.n + '-' + size + '.jpg';
   }
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  function pad2(n) { return (n < 10 ? '0' : '') + n; }
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var finePointer  = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-  /* Bento spans. Desktop (12 col): 8+4 / 8+4 / 4+4+4 / 4+4+4 / 12.
-     Tablet (6 col): feature and closer span 6, everything else 3. */
-  var SPANS = { 0: 'sp-c8 sp-r2', 9: 'sp-c12' };
-
-  var grid = document.getElementById('grid');
+  var grid = document.getElementById('cats');
   document.getElementById('work-count').textContent =
     projects.length + (projects.length === 1 ? ' project' : ' projects');
 
@@ -992,24 +1003,44 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     if (e.target && e.target.tagName === 'IMG') e.target.hidden = true;
   }, true);
 
-  /* ---------- Render the grid now, synchronously (before first paint) ---------- */
-  grid.innerHTML = projects.map(function (p, i) {
-    var span = SPANS[i] || '';
-    var eager = i === 0;
-    return '<li class="' + (span + (i >= 3 ? ' reveal' : '')).trim() + '">' +
+  function tileHtml(p, i, eager) {
+    return '<li class="reveal">' +
       '<button class="tile" type="button" data-i="' + i + '" ' +
-              'aria-label="View ' + esc(p.title) + ' project details">' +
+              'aria-label="View ' + esc(p.title) + ' case study">' +
         '<span class="tile__media">' +
-          '<img src="' + src(p, p.imgs[0], 800) + '" alt="' + esc(p.title) + ' render" ' +
+          '<img src="' + src(p, p.imgs[0], 800) + '" alt="' + esc(p.imgs[0].alt || p.title) + '" ' +
                (eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"') +
                ' decoding="async">' +
         '</span>' +
         '<span class="tile__body">' +
-          '<span class="tile__cat">' + esc(p.cat) + '</span>' +
+          '<span class="tile__cat">' + esc(p.status) + '</span>' +
           '<span class="tile__title">' + esc(p.title) + '</span>' +
+          '<span class="tile__sum">' + esc(p.summary) + '</span>' +
         '</span>' +
       '</button>' +
     '</li>';
+  }
+
+  /* ---------- Render category sections now, synchronously (before first paint) ---------- */
+  var catNav = '<nav class="catnav" aria-label="Work categories"><ul>' +
+    CATS.map(function (c) {
+      var n = projects.filter(function (p) { return p.cat === c.name; }).length;
+      return '<li><a href="#cat-' + c.id + '">' + esc(c.name) +
+             '<span class="catnav__n">' + n + '</span></a></li>';
+    }).join('') + '</ul></nav>';
+
+  grid.innerHTML = catNav + CATS.map(function (c) {
+    var items = [];
+    projects.forEach(function (p, i) { if (p.cat === c.name) items.push([p, i]); });
+    return '<section class="cat" id="cat-' + c.id + '" aria-labelledby="cat-' + c.id + '-h">' +
+      '<div class="cat__head">' +
+        '<h3 class="cat__title" id="cat-' + c.id + '-h">' + esc(c.name) + '</h3>' +
+        '<p class="cat__blurb">' + esc(c.blurb) + '</p>' +
+      '</div>' +
+      '<ul class="grid">' + items.map(function (x) {
+        return tileHtml(x[0], x[1], x[1] < 3);
+      }).join('') + '</ul>' +
+    '</section>';
   }).join('');
 
   /* ---------- Reveal on scroll ---------- */
@@ -1114,6 +1145,10 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   var dtRole   = document.getElementById('detail-role');
   var dtCount  = document.getElementById('detail-count');
   var dtShots  = document.getElementById('detail-shots');
+  var dtHero   = document.getElementById('detail-hero');
+  var dtBody   = document.getElementById('detail-body');
+  var dtTags   = document.getElementById('detail-tags');
+  var dtMore   = document.getElementById('detail-more');
   var dtClose  = document.getElementById('detail-close');
 
   var dtPrev     = document.getElementById('detail-prev');
@@ -1126,23 +1161,64 @@ button{ font:inherit; color:inherit; background:none; border:0 }
   var opener = null;
   var current = -1;
 
+  function paras(arr) {
+    return (arr || []).map(function (t) { return '<p>' + t + '</p>'; }).join('');
+  }
+  function sec(title, inner) {
+    return inner ? '<section class="cs"><h3 class="cs__h">' + title + '</h3>' + inner + '</section>' : '';
+  }
+  function list(arr) {
+    return arr && arr.length ? '<ul class="cs__list">' + arr.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' : '';
+  }
+  function fig(p, img, size, eager) {
+    return '<figure><img src="' + src(p, img, size) + '" alt="' + esc(img.alt) + '" ' +
+           (eager ? 'loading="eager"' : 'loading="lazy"') + ' decoding="async"></figure>';
+  }
+
+  /* The case study body. Fields are optional: short projects carry `notes`
+     only, featured ones carry the full problem-to-outcome sequence. */
+  function bodyHtml(p) {
+    var h = '';
+    h += sec('The problem', paras(p.problem));
+    if (p.requirements && p.requirements.length) {
+      h += sec('Requirements', '<dl class="cs__req">' + p.requirements.map(function (r) {
+        return '<div><dt>' + esc(r.t) + '</dt><dd>' + esc(r.d) + '</dd></div>';
+      }).join('') + '</dl>');
+    }
+    h += sec('Concept', paras(p.concept));
+    h += sec('The design', paras(p.design));
+    if (p.decisions && p.decisions.length) {
+      h += sec('Design decisions', p.decisions.map(function (d) {
+        return '<div class="cs__dec"><h4>' + esc(d.q) + '</h4>' + paras(d.a) + '</div>';
+      }).join(''));
+    }
+    h += sec('Built to be made', list(p.manufacturing));
+    h += sec('Notes', list(p.notes));
+    h += sec('What the design achieves', list(p.outcome));
+    h += sec('What I would change', paras(p.learned));
+    h += '<p class="cs__caveat">' + esc(CAVEAT) + '</p>';
+    return h;
+  }
+
   /* Fill the overlay for project i. Split out from openDetail so prev/next can
      re-render in place without disturbing the element focus is restored to. */
   function renderDetail(i) {
     var p = projects[i];
     current = i;
 
-    dtCat.textContent   = p.cat;
+    dtCat.textContent   = p.cat + ' / ' + p.status;
     dtTitle.textContent = p.title;
-    dtDesc.textContent  = p.desc;
-    dtRole.textContent  = p.role;
+    dtDesc.textContent  = p.lead || p.summary;
+    dtRole.textContent  = p.role + (p.tools && p.tools.length ? '. Tools: ' + p.tools.join(', ') : '');
+    dtTags.innerHTML    = (p.engineering || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
     dtCount.textContent = p.imgs.length + (p.imgs.length === 1 ? ' render' : ' renders');
 
-    dtShots.innerHTML = p.imgs.map(function (n, k) {
-      return '<figure><img src="' + src(p, n, 1600) + '" ' +
-             'alt="' + esc(p.title) + ' render ' + (k + 1) + ' of ' + p.imgs.length + '" ' +
-             (k === 0 ? 'loading="eager"' : 'loading="lazy"') + ' decoding="async"></figure>';
+    dtHero.innerHTML = fig(p, p.imgs[0], 1600, true);
+    dtBody.innerHTML = bodyHtml(p);
+    dtShots.innerHTML = p.imgs.slice(1).map(function (img) {
+      return fig(p, img, 1600, false);
     }).join('');
+    dtMore.hidden = p.imgs.length < 2;
 
     var n = projects.length;
     var prev = projects[(i - 1 + n) % n];
@@ -1176,6 +1252,7 @@ button{ font:inherit; color:inherit; background:none; border:0 }
     dt.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('is-locked');
     dtShots.innerHTML = '';          // stop offscreen renders downloading
+    dtHero.innerHTML = '';
     // Return focus to the card for the project actually being viewed, after
     // paging with prev/next that is no longer the card that opened the overlay.
     var landing = grid.querySelector('.tile[data-i="' + current + '"]') || opener;
