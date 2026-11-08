@@ -65,21 +65,6 @@
   --section:clamp(72px, 10vw, 128px);
   --bar:64px;
 }
-/* orange picker (preview only, shown with ?oranges) */
-.picker{
-  position:fixed; left:16px; bottom:16px; z-index:350;
-  display:flex; align-items:center; gap:6px; padding:8px 10px 8px 14px;
-  border-radius:var(--r-pill); background:var(--surface); border:1px solid var(--line-2);
-  box-shadow:0 8px 30px rgba(0,0,0,.16); max-width:calc(100% - 32px); overflow-x:auto;
-}
-.picker button{
-  display:flex; align-items:center; gap:6px; height:32px; padding:0 12px 0 6px; flex:none;
-  border-radius:var(--r-pill); border:1px solid transparent;
-  font-size:.8125rem; font-weight:500; color:var(--text-2);
-}
-.picker button[aria-pressed="true"]{ border-color:var(--text); color:var(--text) }
-.picker i{ width:20px; height:20px; border-radius:50%; border:1px solid var(--line-2) }
-
 /* ============================================================
    Base
    ============================================================ */
@@ -846,41 +831,6 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
     });
   });
 
-
-
-  /* ---------- Orange options (preview only): ?oranges shows a picker ---------- */
-  (function () {
-    var OR = [
-      { name: 'Current', bg: '#FF5A1F', ac: '#E8501A' },
-      { name: 'Terracotta', bg: '#D9693F', ac: '#C4552B' },
-      { name: 'Clay', bg: '#E58C61', ac: '#CF6F43' },
-      { name: 'Apricot', bg: '#F2A877', ac: '#D9743A' },
-      { name: 'Peach', bg: '#F8C09A', ac: '#D9743A' },
-      { name: 'Amber', bg: '#F0A23B', ac: '#D17A12' }
-    ];
-    if (!new URLSearchParams(location.search).has('oranges')) return;
-    function apply(i, box) {
-      var s = document.documentElement.style;
-      s.setProperty('--cta-bg', OR[i].bg);
-      s.setProperty('--accent', OR[i].ac);
-      s.setProperty('--em', OR[i].ac);
-      Array.prototype.forEach.call(box.querySelectorAll('button'), function (b, k) {
-        b.setAttribute('aria-pressed', String(k === i));
-      });
-    }
-    var box = document.createElement('div');
-    box.className = 'picker';
-    box.innerHTML = '<span class="mono">Orange</span>' + OR.map(function (o) {
-      return '<button type="button"><i style="background:' + o.bg + '"></i>' + o.name + '</button>';
-    }).join('');
-    document.body.appendChild(box);
-    box.addEventListener('click', function (e) {
-      var b = e.target.closest ? e.target.closest('button') : null;
-      if (!b) return;
-      apply(Array.prototype.indexOf.call(box.querySelectorAll('button'), b), box);
-    });
-    apply(0, box);
-  })();
 
   /* ---------- Copy email ---------- */
   var copyBtn = $('copy-btn');
