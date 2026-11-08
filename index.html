@@ -258,12 +258,13 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
    ============================================================ */
 .profile{ display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 8fr); gap:clamp(32px, 6vw, 88px); align-items:start }
 @media (max-width:860px){ .profile{ grid-template-columns:minmax(0, 1fr) } }
-.profile__side{ display:flex; flex-direction:column; gap:22px; align-items:flex-start }
+.profile__side{ display:flex; flex-direction:column; align-items:flex-start }
 @media (min-width:861px){ .profile__side{ position:sticky; top:calc(var(--bar) + 24px) } }
-.pf{ display:flex; flex-direction:column; gap:18px; width:100% }
-.pf > div{ padding-bottom:18px; border-bottom:1px solid var(--line) }
-.pf dt{ margin-bottom:4px }
-.pf dd{ font-size:.9375rem; line-height:1.5 }
+.profile__side{ gap:16px }
+.pf{ width:100%; border-top:1px solid var(--line) }
+.pf > div{ display:grid; grid-template-columns:5.5rem minmax(0, 1fr); align-items:baseline; gap:12px; padding:10px 0; border-bottom:1px solid var(--line) }
+.pf dt{ margin:0 }
+.pf dd{ font-size:.875rem; line-height:1.45 }
 .about__lead{ font-size:clamp(1.5rem, 3vw, 2.25rem); font-weight:600; letter-spacing:-.03em; line-height:1.15 }
 .about__body{ margin-top:16px; color:var(--text-2); max-width:56ch }
 .chips{ display:flex; flex-wrap:wrap; gap:6px }
