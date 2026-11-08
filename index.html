@@ -288,7 +288,14 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
   .exp__o{ grid-column:1; grid-row:2 }
   .exp__y{ grid-column:2; grid-row:1 }
 }
-.exp p{ padding:0 0 16px; color:var(--text-2); font-size:.9375rem; max-width:62ch }
+.exp__body{ padding:2px 0 20px; display:flex; flex-direction:column; gap:16px }
+.exp__meta{ display:grid; grid-template-columns:repeat(3, minmax(0, auto)); justify-content:start; gap:12px 40px }
+@media (max-width:560px){ .exp__meta{ grid-template-columns:repeat(2, minmax(0, 1fr)) } }
+.exp__meta dt{ margin-bottom:2px }
+.exp__meta dd{ font-size:.9375rem }
+.exp__pts{ display:flex; flex-direction:column; gap:8px }
+.exp__pts li{ position:relative; padding-left:18px; color:var(--text-2); font-size:.9375rem; line-height:1.6 }
+.exp__pts li::before{ content:""; position:absolute; left:2px; top:.75em; width:6px; height:6px; border-radius:50%; background:var(--accent) }
 .exp summary:hover .exp__t{ text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px }
 
 /* ============================================================
@@ -522,21 +529,68 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
 
         <p class="mono exp__label">Experience</p>
         <ul class="exp">
-          <li><details>
+          <li><details name="exp">
             <summary><span class="exp__t">MEP &amp; Design Intern</span><span class="exp__o">Palfe Associates</span><span class="exp__y">2024</span></summary>
-            <p>Ibadan, Nigeria. MEP layouts in AutoCAD &amp; Revit, clash-detection reports, on-site compliance checks.</p>
+            <div class="exp__body">
+              <dl class="exp__meta">
+                <div><dt class="mono">Company</dt><dd>Palfe Associates</dd></div>
+                <div><dt class="mono">Location</dt><dd>Ibadan, Nigeria</dd></div>
+                <div><dt class="mono">Period</dt><dd>2024</dd></div>
+              </dl>
+              <ul class="exp__pts">
+                <li>MEP layouts in AutoCAD &amp; Revit</li>
+                <li>Clash-detection reports</li>
+                <li>On-site compliance checks</li>
+              </ul>
+              <ul class="chips" aria-label="Tools and skills"><li>AutoCAD</li><li>Revit</li></ul>
+            </div>
           </details></li>
-          <li><details>
+          <li><details name="exp">
             <summary><span class="exp__t">Product Design Intern</span><span class="exp__o">Costech Computers</span><span class="exp__y">2023</span></summary>
-            <p>Lagos, Nigeria. 2D drafts and annotations in AutoCAD, 3D models and prototypes in Fusion 360, technical documentation.</p>
+            <div class="exp__body">
+              <dl class="exp__meta">
+                <div><dt class="mono">Company</dt><dd>Costech Computers</dd></div>
+                <div><dt class="mono">Location</dt><dd>Lagos, Nigeria</dd></div>
+                <div><dt class="mono">Period</dt><dd>2023</dd></div>
+              </dl>
+              <ul class="exp__pts">
+                <li>2D drafts and annotations in AutoCAD</li>
+                <li>3D models and prototypes in Fusion 360</li>
+                <li>Technical documentation</li>
+              </ul>
+              <ul class="chips" aria-label="Tools and skills"><li>AutoCAD</li><li>Fusion 360</li></ul>
+            </div>
           </details></li>
-          <li><details>
+          <li><details name="exp">
             <summary><span class="exp__t">Sheet Metal Works Engineer</span><span class="exp__o">Aseyori Ventures</span><span class="exp__y">2022-2023</span></summary>
-            <p>Ibadan, Nigeria. Aluminum fabrication to tight tolerances; optimized workflows to cut waste; enforced QC.</p>
+            <div class="exp__body">
+              <dl class="exp__meta">
+                <div><dt class="mono">Company</dt><dd>Aseyori Ventures</dd></div>
+                <div><dt class="mono">Location</dt><dd>Ibadan, Nigeria</dd></div>
+                <div><dt class="mono">Period</dt><dd>2022-2023</dd></div>
+              </dl>
+              <ul class="exp__pts">
+                <li>Aluminum fabrication to tight tolerances</li>
+                <li>Optimized workflows to cut waste</li>
+                <li>Enforced QC</li>
+              </ul>
+              <ul class="chips" aria-label="Tools and skills"><li>Sheet metal</li><li>QC</li></ul>
+            </div>
           </details></li>
-          <li><details>
+          <li><details name="exp">
             <summary><span class="exp__t">Mechanical Machines Intern</span><span class="exp__o">Polar Machines</span><span class="exp__y">2019-2020</span></summary>
-            <p>Ekiti, Nigeria. Diagnosed and repaired industrial machinery; streamlined workshop operations.</p>
+            <div class="exp__body">
+              <dl class="exp__meta">
+                <div><dt class="mono">Company</dt><dd>Polar Machines</dd></div>
+                <div><dt class="mono">Location</dt><dd>Ekiti, Nigeria</dd></div>
+                <div><dt class="mono">Period</dt><dd>2019-2020</dd></div>
+              </dl>
+              <ul class="exp__pts">
+                <li>Diagnosed and repaired industrial machinery</li>
+                <li>Streamlined workshop operations</li>
+              </ul>
+              <ul class="chips" aria-label="Tools and skills"><li>Machine repair</li></ul>
+            </div>
           </details></li>
         </ul>
       </div>
@@ -777,6 +831,16 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
   window.addEventListener('scroll', syncBar, { passive: true });
   window.addEventListener('resize', syncBar);
   syncBar();
+
+
+  /* Experience: one row open at a time (the name attribute does this natively; this covers older browsers) */
+  var expRows = document.querySelectorAll('.exp details');
+  Array.prototype.forEach.call(expRows, function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      Array.prototype.forEach.call(expRows, function (o) { if (o !== d) o.open = false; });
+    });
+  });
 
   /* ---------- Copy email ---------- */
   var copyBtn = $('copy-btn');
