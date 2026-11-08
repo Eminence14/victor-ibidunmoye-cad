@@ -6,9 +6,8 @@
 <title>Victor Ibidunmoye | Mechanical &amp; Product Design Engineer</title>
 <meta name="description" content="Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.">
 <meta name="author" content="Victor Ibidunmoye">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F6F5F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0B0D10" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F3F1EA">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Victor Ibidunmoye | Mechanical &amp; Product Design Engineer">
@@ -20,7 +19,7 @@
 <meta name="twitter:title" content="Victor Ibidunmoye | Mechanical &amp; Product Design Engineer">
 <meta name="twitter:description" content="Specializing in SolidWorks-based CAD, mechanical assemblies, and manufacturing-ready design.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='9'%20fill='%230E0F11'/%3E%3Ctext%20x='16'%20y='22'%20font-family='ui-monospace,SFMono-Regular,Menlo,monospace'%20font-size='13'%20font-weight='600'%20fill='%23F6F5F2'%20text-anchor='middle'%3EVI%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='9'%20fill='%230E0F11'/%3E%3Ctext%20x='16'%20y='22'%20font-family='ui-monospace,SFMono-Regular,Menlo,monospace'%20font-size='13'%20font-weight='600'%20fill='%23F3F1EA'%20text-anchor='middle'%3EVI%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,23 +30,29 @@
    Tokens: warm paper, one ink, one accent
    ============================================================ */
 :root{
-  color-scheme:light dark;
-  --bg:#F6F5F2;
+  color-scheme:light;
+  --bg:#F3F1EA;
   --surface:#FFFFFF;
-  --surface-2:#EDEBE6;
-  --text:#0E0F11;
-  --text-2:#4F5359;
-  --text-3:#6B6F76;
-  --line:rgba(14,15,17,.10);
-  --line-2:rgba(14,15,17,.20);
-  --ink:#0E0F11;
+  --surface-2:#E9E6DD;
+  --text:#14110E;
+  --text-2:#57514A;
+  --text-3:#6F685F;
+  --line:rgba(20,17,14,.12);
+  --line-2:rgba(20,17,14,.24);
+  --ink:#14110E;
   --ink-text:#FFFFFF;
-  --accent:#2456E8;
-  --signal:#1FA34A;
-  --em:var(--text-3);
-  --cta-bg:var(--surface);
-  --cta-text:var(--text);
-  --cta-sub:var(--text-2);
+  --accent:#E8501A;
+  --em:#E8501A;
+  --cta-bg:#FF5A1F;
+  --cta-text:#170A04;
+  --cta-sub:rgba(23,10,4,.74);
+
+  /* drafting-paper pattern: a fine dot grid with a faint major grid */
+  --pattern:
+    radial-gradient(circle at 1px 1px, rgba(20,17,14,.16) 1px, transparent 1.4px),
+    linear-gradient(to right, rgba(20,17,14,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20,17,14,.045) 1px, transparent 1px);
+  --pattern-size:24px 24px, 144px 144px, 144px 144px;
 
   --r-card:20px;
   --r-media:14px;
@@ -60,80 +65,6 @@
   --section:clamp(72px, 10vw, 128px);
   --bar:64px;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0B0D10;
-    --surface:#12151A;
-    --surface-2:#1A1E25;
-    --text:#F2F3F5;
-    --text-2:#A7ABB2;
-    --text-3:#8B9098;
-    --line:rgba(255,255,255,.10);
-    --line-2:rgba(255,255,255,.20);
-    --ink:#F2F3F5;
-    --ink-text:#0B0D10;
-    --accent:#7BA9FF;
-    --signal:#30D158;
-  }
-}
-
-/* ============================================================
-   Alternative palettes (chosen with data-theme on <html>)
-   ============================================================ */
-:root[data-theme="signal"]{
-  color-scheme:light;
-  --bg:#F3F1EA; --surface:#FFFFFF; --surface-2:#E9E6DD;
-  --text:#14110E; --text-2:#57514A; --text-3:#6F685F;
-  --line:rgba(20,17,14,.12); --line-2:rgba(20,17,14,.24);
-  --ink:#14110E; --ink-text:#FFFFFF; --accent:#E8501A; --signal:#1FA34A;
-  --em:#E8501A;
-  --cta-bg:#FF5A1F; --cta-text:#170A04; --cta-sub:rgba(23,10,4,.74);
-}
-:root[data-theme="blueprint"]{
-  color-scheme:light;
-  --bg:#F4F6FB; --surface:#FFFFFF; --surface-2:#E6EAF5;
-  --text:#0B1020; --text-2:#4A5270; --text-3:#656D8C;
-  --line:rgba(11,16,32,.10); --line-2:rgba(11,16,32,.22);
-  --ink:#0B1020; --ink-text:#FFFFFF; --accent:#2B4BFF; --signal:#1FA34A;
-  --em:#2B4BFF;
-  --cta-bg:#2B4BFF; --cta-text:#FFFFFF; --cta-sub:rgba(255,255,255,.80);
-}
-:root[data-theme="graphite"]{
-  color-scheme:dark;
-  --bg:#0E0F10; --surface:#17191B; --surface-2:#1F2224;
-  --text:#F1F2F0; --text-2:#A5A9A6; --text-3:#868B88;
-  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.22);
-  --ink:#D4F13B; --ink-text:#11140A; --accent:#D4F13B; --signal:#D4F13B;
-  --em:#D4F13B;
-  --cta-bg:#D4F13B; --cta-text:#10130A; --cta-sub:rgba(16,19,10,.72);
-}
-:root[data-theme="copper"]{
-  color-scheme:dark;
-  --bg:#120F0D; --surface:#1B1613; --surface-2:#251E1A;
-  --text:#F5EEE8; --text-2:#B3A79D; --text-3:#918479;
-  --line:rgba(255,235,220,.10); --line-2:rgba(255,235,220,.22);
-  --ink:#E58A4E; --ink-text:#1A0E06; --accent:#E58A4E; --signal:#E58A4E;
-  --em:#E58A4E;
-  --cta-bg:#E58A4E; --cta-text:#1A0E06; --cta-sub:rgba(26,14,6,.74);
-}
-
-/* theme picker (only shown with ?themes in the address) */
-.themes{
-  position:fixed; left:16px; bottom:16px; z-index:350;
-  display:flex; align-items:center; gap:8px; padding:8px 10px 8px 14px;
-  border-radius:var(--r-pill); background:var(--surface); border:1px solid var(--line-2);
-  box-shadow:0 8px 30px rgba(0,0,0,.18);
-}
-.themes .mono{ margin-right:4px }
-.themes button{
-  display:flex; align-items:center; gap:6px; height:32px; padding:0 12px 0 6px;
-  border-radius:var(--r-pill); border:1px solid transparent;
-  font-size:.8125rem; font-weight:500; color:var(--text-2);
-}
-.themes button[aria-pressed="true"]{ border-color:var(--text); color:var(--text) }
-.themes i{ width:20px; height:20px; border-radius:50%; border:1px solid var(--line-2) }
-@media (max-width:640px){ .themes{ left:8px; right:8px; bottom:8px; overflow-x:auto } .themes .mono{ display:none } }
-
 /* ============================================================
    Base
    ============================================================ */
@@ -141,7 +72,8 @@
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100% }
 body{
   margin:0;
-  background:var(--bg); color:var(--text);
+  background-color:var(--bg); background-image:var(--pattern); background-size:var(--pattern-size);
+  color:var(--text);
   font-family:var(--font); font-size:1rem; line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
@@ -225,15 +157,8 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
    Hero
    ============================================================ */
 .hero{ padding-top:clamp(40px, 6vw, 80px) }
-.status{
-  display:inline-flex; align-items:center; gap:9px;
-  padding:7px 14px 7px 12px; border-radius:var(--r-pill);
-  background:var(--surface); border:1px solid var(--line);
-  font-size:.8125rem; font-weight:500; color:var(--text-2);
-}
-.status i{ width:7px; height:7px; border-radius:50%; background:var(--signal); box-shadow:0 0 0 4px color-mix(in srgb, var(--signal) 20%, transparent) }
 .hero__title{
-  margin-top:22px; max-width:16ch;
+  margin-top:0; max-width:16ch;
   font-size:clamp(2.5rem, 7.2vw, 5.25rem);
   font-weight:600; letter-spacing:-.045em; line-height:1;
 }
@@ -395,7 +320,7 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
 .sheet{
   position:fixed; inset:0; z-index:300; display:none;
   overflow-y:auto; overscroll-behavior:contain;
-  background:var(--bg);
+  background-color:var(--bg); background-image:var(--pattern); background-size:var(--pattern-size);
 }
 .sheet.is-open{ display:block }
 .sheet__bar{
@@ -538,7 +463,6 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
 
   <!-- ================= Hero ================= -->
   <section class="wrap hero" id="top" aria-labelledby="hero-title">
-    <p class="status"><i aria-hidden="true"></i>Available for new roles</p>
     <h1 class="hero__title" id="hero-title">Designs a workshop can <em>actually build.</em></h1>
     <div class="hero__row">
       <p class="hero__sub">Mechanical and product design engineer in Ibadan, Nigeria. SolidWorks-based CAD, assemblies and manufacturing-ready drawings, from concept to build.</p>
@@ -907,47 +831,6 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
     });
   });
 
-
-  /* ---------- Colour themes: ?theme=name applies one; ?themes shows a picker ---------- */
-  var THEMES = [
-    { id: 'paper', name: 'Paper', a: '#F6F5F2', b: '#2456E8' },
-    { id: 'signal', name: 'Signal', a: '#F3F1EA', b: '#FF5A1F' },
-    { id: 'blueprint', name: 'Blueprint', a: '#F4F6FB', b: '#2B4BFF' },
-    { id: 'graphite', name: 'Graphite', a: '#0E0F10', b: '#D4F13B' },
-    { id: 'copper', name: 'Copper', a: '#120F0D', b: '#E58A4E' }
-  ];
-  function applyTheme(id) {
-    if (id === 'paper') document.documentElement.removeAttribute('data-theme');
-    else document.documentElement.setAttribute('data-theme', id);
-    try { localStorage.setItem('theme', id); } catch (err) {}
-    Array.prototype.forEach.call(document.querySelectorAll('.themes button'), function (b) {
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-id') === id));
-    });
-  }
-  (function () {
-    var q = new URLSearchParams(location.search);
-    var saved = null;
-    try { saved = localStorage.getItem('theme'); } catch (err) {}
-    var want = q.get('theme') || (q.has('themes') ? saved : null);
-    var picker = q.has('themes');
-    if (picker) {
-      var box = document.createElement('div');
-      box.className = 'themes';
-      box.setAttribute('role', 'group');
-      box.setAttribute('aria-label', 'Colour theme');
-      box.innerHTML = '<span class="mono">Theme</span>' + THEMES.map(function (t) {
-        return '<button type="button" data-id="' + t.id + '" aria-pressed="false">' +
-          '<i style="background:linear-gradient(135deg,' + t.a + ' 50%,' + t.b + ' 50%)"></i>' + t.name + '</button>';
-      }).join('');
-      document.body.appendChild(box);
-      box.addEventListener('click', function (e) {
-        var b = e.target.closest ? e.target.closest('button[data-id]') : null;
-        if (b) applyTheme(b.getAttribute('data-id'));
-      });
-    }
-    if (want && THEMES.some(function (t) { return t.id === want; })) applyTheme(want);
-    else if (picker) applyTheme('paper');
-  })();
 
   /* ---------- Copy email ---------- */
   var copyBtn = $('copy-btn');
