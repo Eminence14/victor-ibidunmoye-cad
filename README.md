@@ -36,5 +36,8 @@ A static site with no build step. Netlify publishes the repository root.
 To add or edit a project, change `assets/js/projects.js` and add its renders under
 `assets/img/portfolio/`. The page reads that file, so `index.html` stays as it is.
 
+A project with a `video` entry (a Mux playback ID) opens on that film instead of its first render,
+played in [VIDEOBOY](https://videoboy.netlify.app), my Video.js v10 skin, from `assets/vendor/videoboy/`.
+
 Case studies describe design intent. No project states a measured result unless
 real test or simulation data exists for it.

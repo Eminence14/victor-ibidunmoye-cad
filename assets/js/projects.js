@@ -19,6 +19,140 @@ window.CATEGORIES = [
 window.CAVEAT = "This page describes design intent and the reasoning behind it. No measured performance or test data is published for this project yet. Where a number would have been a guess, it has been left out.";
 window.PROJECTS = [
  {
+  "slug": "double-wishbone-front-suspension",
+  "title": "Double Wishbone Front Suspension",
+  "cat": "Mechanism Design",
+  "featured": true,
+  "folder": "Double Wishbone Suspension",
+  "status": "CAD assembly and motion study complete",
+  "role": "Mechanical designer: suspension layout, part modelling, assembly, motion study, renders",
+  "tools": [
+   "SolidWorks",
+   "Blender"
+  ],
+  "engineering": [
+   "Double wishbone",
+   "Coil-over damper",
+   "Ball joints",
+   "Steering linkage",
+   "Bolted subframe"
+  ],
+  "video": {
+   "playback": "MtxnrzwzrYo1jdSQLl00V902AZoS2z3RWJHLkvhV6Kqcg",
+   "poster": 9.5,
+   "title": "Suspension motion study",
+   "alt": "Animation: the car drives over a speed bump, the body fades to reveal the front suspension, and the front corner steers and articulates"
+  },
+  "summary": "An independent front suspension for a small car: upper and lower wishbones on a bolted subframe, a coil-over damper on each side, and a steering linkage that turns the uprights through ball joints.",
+  "lead": "An independent front suspension for a small car, modelled part by part and assembled in SolidWorks. Each wheel hangs from its own upper and lower wishbone, carries its own coil-over damper, and steers about the line through its two ball joints, so one wheel can ride over a bump without dragging the other with it.",
+  "imgs": [
+   {
+    "n": 1,
+    "alt": "Double wishbone front suspension: three-quarter studio render of the subframe, blue wishbones, orange coil-over dampers and both front wheels"
+   },
+   {
+    "n": 2,
+    "alt": "Front elevation of the suspension: upper and lower wishbones on each side of the black subframe, coil-overs angled inboard, and the steering rods across the middle"
+   },
+   {
+    "n": 3,
+    "alt": "Close-up of the right front corner: the coil-over between its subframe mount and the lower wishbone, the red ball-joint housing on the upper arm, and the steering rod"
+   },
+   {
+    "n": 4,
+    "alt": "High three-quarter view looking down onto the wishbones, the subframe and the steering linkage"
+   },
+   {
+    "n": 5,
+    "alt": "View from behind the axle, looking forward through the subframe at the coil-overs and the backs of the wheels"
+   },
+   {
+    "n": 6,
+    "alt": "The suspension in its car: the body shown as a ghost over the road, with the front wishbones, coil-overs and wheels visible through it"
+   }
+  ],
+  "problem": [
+   "A beam axle ties the two front wheels together: when one rides over a bump, the other tilts with it, and the steering feels every movement. For a small car on broken roads that means a harsh ride and a wheel that is rarely square to the surface.",
+   "The aim here was an independent front end that a fabrication shop can build from plate, tube and standard fasteners, with every joint something a mechanic can unbolt and replace."
+  ],
+  "requirements": [
+   {
+    "t": "Independence",
+    "d": "Each front wheel moves on its own linkage, so a bump under one side does not tilt the other."
+   },
+   {
+    "t": "Steering",
+    "d": "Both uprights steer through a linkage from a central rod, about the axis through their ball joints."
+   },
+   {
+    "t": "Springing and damping",
+    "d": "A coil spring and damper per side, as one coil-over unit with a mount at each end."
+   },
+   {
+    "t": "Mounting",
+    "d": "Everything hangs from one subframe that bolts to the body, so the front end can be built and checked as a unit."
+   },
+   {
+    "t": "Fasteners",
+    "d": "Standard ISO structural bolts and nuts at every pivot, all in one thread size."
+   },
+   {
+    "t": "Service",
+    "d": "Ball joints, dampers and steering rods are separate bolted parts, replaceable without cutting or welding."
+   }
+  ],
+  "concept": [
+   "Two layouts were considered for the front: a MacPherson strut, where the damper body itself locates the wheel, and a double wishbone, where two arms locate it and the damper only springs and damps.",
+   "The double wishbone won. It needs one more arm per side, but it separates the jobs: the arms set where the wheel goes as it moves, and the coil-over can be sized for ride alone. It also keeps the damper free of the side loads a strut has to carry."
+  ],
+  "design": [
+   "A black subframe forms the spine of the front end. Each wishbone pivots on a pair of fore-and-aft bolts at the subframe, the upper pair above the lower, and runs out to a ball-joint housing at its outer end.",
+   "The two ball joints carry the steering knuckle, which in turn carries the wheel. The knuckle steers about the line through the two ball joints, the kingpin axis, and a steering arm on the knuckle takes the input from the steering rod.",
+   "The coil-over runs from a mount high on the subframe down to a mount on the lower wishbone, angled inboard. As the wheel rises the lower arm swings up and shortens the coil-over, compressing the spring. Steering comes from a central tie rod with a steering rod out to each knuckle's steering arm, and every pivot in the assembly is an M30 ISO structural bolt with an ISO 7414 nut."
+  ],
+  "decisions": [
+   {
+    "q": "Why a double wishbone rather than a MacPherson strut?",
+    "a": [
+     "A strut is cheaper and lighter, but the damper becomes part of the wheel location and carries side load in its bearings. With two wishbones the damper only springs and damps, and the wheel's path is set by the arm pivots, which are simple bolted joints."
+    ]
+   },
+   {
+    "q": "Why mount the coil-over on the lower arm?",
+    "a": [
+     "The lower wishbone carries the wheel load into the spring most directly, and mounting there leaves the upper arm free and short. The angled mount also keeps the coil-over out of the way of the steering rod."
+    ]
+   },
+   {
+    "q": "Why bolt the ball joints in housings instead of pressing them into the arms?",
+    "a": [
+     "A bolted housing can be swapped with hand tools when the joint wears. A pressed-in joint needs a press and a puller, which a roadside mechanic may not have."
+    ]
+   },
+   {
+    "q": "Why one bolt size everywhere?",
+    "a": [
+     "Every pivot uses an M30 structural bolt, so one set of spanners and one stock of fasteners covers the whole front end, and there is no way to put the wrong bolt in the wrong hole."
+    ]
+   }
+  ],
+  "manufacturing": [
+   "<strong>Wishbones:</strong> tube and plate, cut and welded, with bushed eyes at the inner pivots.",
+   "<strong>Subframe:</strong> plate sections welded into a single spine, drilled for the arm and coil-over mounts.",
+   "<strong>Joints:</strong> ball-joint housings, dampers and steering rods are bought or separately made parts, bolted in.",
+   "<strong>Fasteners:</strong> ISO 7411 and 7412 structural bolts with ISO 7414 nuts throughout."
+  ],
+  "outcome": [
+   "Each front wheel is located by its own pair of arms, so the two sides move independently.",
+   "The steering linkage turns both knuckles about their ball-joint axes from one central rod.",
+   "The front end hangs from a single bolted subframe and can be assembled and checked off the car.",
+   "Every wearing part, from ball joints to dampers and steering rods, is bolted, not welded or pressed."
+  ],
+  "learned": [
+   "The motion study shows the linkage moving through bump and steer, but the arm lengths and pivot heights were set by layout, not by a camber or bump-steer analysis. The next step is to sweep the suspension through its travel and steering lock, plot camber and toe against wheel position, and adjust the pivot points to suit."
+  ]
+ },
+ {
   "slug": "industrial-ginger-peeler",
   "title": "Industrial Ginger Peeler",
   "cat": "Machine Design",
