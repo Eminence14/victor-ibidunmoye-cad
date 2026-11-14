@@ -922,14 +922,14 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
   }
   /* The player's three themes: a swatch row under the film re-skins the handheld only, not this page. */
   var VB_THEMES = [
+    ['night', 'Night', '#4FC8F5', '#144A6C', '#2A2B32'],
     ['tangerine', 'Tangerine', '#F26A1B', '#F9D7A8', '#EADAC0'],
-    ['classic', 'Classic', '#A3184F', '#8BAC0F', '#C9C5BE'],
-    ['night', 'Night', '#4FC8F5', '#144A6C', '#2A2B32']
+    ['classic', 'Classic', '#A3184F', '#8BAC0F', '#C9C5BE']
   ];
   function vbTheme() {
-    var t = 'tangerine';
+    var t = 'night';
     try { t = localStorage.getItem('vb-theme') || t; } catch (e) {}
-    return /^(tangerine|classic|night)$/.test(t) ? t : 'tangerine';
+    return /^(tangerine|classic|night)$/.test(t) ? t : 'night';
   }
   function themesHtml() {
     var cur = vbTheme();
