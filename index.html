@@ -360,6 +360,13 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
 .sheet__hero--video videoboy-skin{ display:block; --vb-accent:#E8501A }
 .sheet__vcap{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 16px; margin-top:14px; font-size:.875rem; color:var(--text-3) }
 .sheet__vcap a{ color:var(--text-2); text-underline-offset:3px }
+.vb-themes{ display:flex; align-items:center; gap:6px; margin:0; padding:0; border:0 }
+.vb-themes legend{ float:left; margin-right:6px; padding:0; font-family:var(--mono); font-size:.75rem; color:var(--text-3) }
+.vb-themes label{ position:relative; display:grid; place-items:center; width:30px; height:30px; border-radius:50%; cursor:pointer }
+.vb-themes input{ position:absolute; inset:0; margin:0; opacity:0; cursor:pointer }
+.vb-themes span{ width:18px; height:18px; border-radius:50%; background:conic-gradient(var(--a) 0 33%, var(--b) 0 66%, var(--c) 0); box-shadow:inset 0 0 0 1px rgba(0,0,0,.15) }
+.vb-themes input:checked + span{ box-shadow:0 0 0 2px var(--bg), 0 0 0 4px var(--text) }
+.vb-themes input:focus-visible + span{ outline:2px solid var(--accent); outline-offset:5px }
 
 .cs-wrap{ margin-top:clamp(48px, 7vw, 96px); counter-reset:cs }
 
@@ -913,13 +920,39 @@ section[id]{ scroll-margin-top:calc(var(--bar) + 16px) }
     js.type = 'module'; js.src = 'assets/vendor/videoboy/videoboy.js';
     document.head.appendChild(js);
   }
+  /* The player's three themes: a swatch row under the film re-skins the handheld only, not this page. */
+  var VB_THEMES = [
+    ['tangerine', 'Tangerine', '#F26A1B', '#F9D7A8', '#EADAC0'],
+    ['classic', 'Classic', '#A3184F', '#8BAC0F', '#C9C5BE'],
+    ['night', 'Night', '#4FC8F5', '#144A6C', '#2A2B32']
+  ];
+  function vbTheme() {
+    var t = 'tangerine';
+    try { t = localStorage.getItem('vb-theme') || t; } catch (e) {}
+    return /^(tangerine|classic|night)$/.test(t) ? t : 'tangerine';
+  }
+  function themesHtml() {
+    var cur = vbTheme();
+    return '<fieldset class="vb-themes"><legend>Theme</legend>' + VB_THEMES.map(function (t) {
+      return '<label title="' + t[1] + '"><input type="radio" name="vb-theme" value="' + t[0] + '" aria-label="' + t[1] + ' theme"' +
+        (t[0] === cur ? ' checked' : '') + '><span style="--a:' + t[2] + ';--b:' + t[3] + ';--c:' + t[4] + '" aria-hidden="true"></span></label>';
+    }).join('') + '</fieldset>';
+  }
+  document.addEventListener('change', function (e) {
+    var el = e.target;
+    if (!el || el.name !== 'vb-theme') return;
+    var skin = elHero.querySelector('videoboy-skin');
+    if (skin) skin.setAttribute('data-theme', el.value);
+    try { localStorage.setItem('vb-theme', el.value); } catch (err) {}
+  });
   function videoHtml(p) {
     var v = p.video, id = encodeURIComponent(v.playback);
     var poster = 'https://image.mux.com/' + id + '/thumbnail.webp?time=' + (v.poster || 0) + '&width=1600';
-    return '<video-player><videoboy-skin data-theme="tangerine" poster="' + poster + '" aria-label="' + esc(v.alt || v.title) + '">' +
+    return '<video-player><videoboy-skin data-theme="' + vbTheme() + '" poster="' + poster + '" aria-label="' + esc(v.alt || v.title) + '">' +
         '<mux-video src="https://stream.mux.com/' + id + '.m3u8" playsinline crossorigin="anonymous" preload="metadata"></mux-video>' +
       '</videoboy-skin></video-player>' +
-      '<p class="sheet__vcap"><span>' + esc(v.title) + '</span><span>Played in <a href="https://videoboy.netlify.app" target="_blank" rel="noopener">VIDEOBOY</a>, my Video.js skin</span></p>';
+      '<div class="sheet__vcap"><span>' + esc(v.title) + '</span>' + themesHtml() +
+      '<span>Played in <a href="https://videoboy.netlify.app" target="_blank" rel="noopener">VIDEOBOY</a>, my Video.js skin</span></div>';
   }
 
   /* Fields are optional: short projects carry `notes` only. */
