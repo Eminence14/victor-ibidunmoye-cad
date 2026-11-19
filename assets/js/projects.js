@@ -1109,7 +1109,7 @@ window.PROJECTS = [
    "<strong>Outsole:</strong> moulded rubber, 6 mm base plus lugs, offset 0.8 mm proud of the foam so the parting line sits in a shadow gap.",
    "<strong>Insert:</strong> a separate moulded part in a contrasting compound; it drops in and lifts out by hand at the finger scoop.",
    "<strong>Bought in:</strong> steel pivot rivets for the sandal and clog straps, the sealed electronics pod for the slide.",
-   "<strong>Production note:</strong> these are concept surfaces built in Blender. For tooling, the chassis and outsole would be rebuilt as closed NURBS solids in SolidWorks, with draft angles checked face by face and alignment channels added at the foam and rubber interface."
+   "<strong>CAD workflow:</strong> the forms were developed as concept surfaces in Blender, and the production chassis and outsole are being built as closed solids in SolidWorks, where draft is checked face by face and the alignment channels at the foam and rubber interface are added. That production set is not complete yet."
   ],
   "outcome": [
    "Three distinct shoes from one last outline and one outsole outline.",
