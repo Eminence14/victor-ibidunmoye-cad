@@ -965,6 +965,163 @@ window.PROJECTS = [
   ]
  },
  {
+  "slug": "vi-recovery-slide-family",
+  "title": "VI Recovery Slide Family",
+  "cat": "Product Design",
+  "featured": true,
+  "folder": "Recovery Slide Family",
+  "status": "Concept CAD and renders complete; production solids not started",
+  "role": "Product designer: last outline, footbed sculpting, chassis and outsole split, strap and insert design, renders",
+  "tools": [
+   "Blender",
+   "Python",
+   "Rendering"
+  ],
+  "engineering": [
+   "Two-piece moulded construction",
+   "Sculpted footbed",
+   "Insert pocket",
+   "Outsole tread",
+   "Parting-line planning"
+  ],
+  "summary": "Three injection-moulded recovery shoes built on one platform: a slide with a removable forefoot insert and a hardware pocket, a cross-strap sandal with a pivoting ankle strap, and a closed clog. Each is a foam chassis on a rubber outsole.",
+  "lead": "A family of recovery footwear designed the way a moulded shoe gets tooled: one last outline, one foam chassis that carries the footbed and the straps, and one rubber outsole underneath. The slide adds a removable forefoot insert sitting over a pocket for a small electronics pod. The sandal and the clog reuse the same platform with different uppers.",
+  "imgs": [
+   {
+    "n": 1,
+    "alt": "VI-01 recovery slide: three-quarter studio render of the bone foam chassis, single moulded strap with vent holes, charcoal rubber outsole and the orange forefoot insert"
+   },
+   {
+    "n": 2,
+    "alt": "VI-01 exploded: rubber outsole on the floor, foam chassis lifted above it, the hardware pod and the removable forefoot insert floating over their pocket"
+   },
+   {
+    "n": 3,
+    "alt": "VI-01 outsole from below: chevron lug bars, a continuous perimeter rim lug and a lug-free waist carrying the VI mark and size stamp"
+   },
+   {
+    "n": 4,
+    "alt": "VI-01 from above: hex-pitched massage nubs across the footbed, the strap with its vent pattern, and the ribbed insert sitting flush in the forefoot"
+   },
+   {
+    "n": 5,
+    "alt": "VI-02 cross-strap sandal: three-quarter render in olive foam with two crossing moulded straps, a black pivoting ankle strap and a gum rubber outsole"
+   },
+   {
+    "n": 6,
+    "alt": "VI-02 rear three-quarter: the ankle strap wraps the heel and pivots on moulded side posts with steel rivets"
+   },
+   {
+    "n": 7,
+    "alt": "VI-02 lateral profile: 9 mm heel-to-toe drop, toe spring at the front of the rocker, and the ankle strap hub on the side post"
+   },
+   {
+    "n": 8,
+    "alt": "VI-02 outsole from below: multidirectional gum lugs on alternating angles, a perimeter rim lug and the VI mark and size stamp at the waist"
+   },
+   {
+    "n": 9,
+    "alt": "VI-03 recovery clog: three-quarter render in ocean-blue foam with a closed upper shell, transverse slot vents and a sand-coloured pivoting heel strap"
+   },
+   {
+    "n": 10,
+    "alt": "VI-03 rear three-quarter: rolled collar at the throat of the shell and the heel strap riding behind the heel cup"
+   },
+   {
+    "n": 11,
+    "alt": "VI-03 outsole from below: charcoal multidirectional lugs with a perimeter rim lug"
+   },
+   {
+    "n": 12,
+    "alt": "VI-03 from above: the slot vents, the throat opening and the nubbed footbed inside the heel"
+   }
+  ],
+  "problem": [
+   "Recovery slides are worn after training, when feet are swollen and sore. The footbed has to cradle the foot and the foam has to be thick enough to unload the heel, yet the shoe still has to be cheap enough to make by the hundred thousand. That means two moulded parts at most, and no stitching.",
+   "The brief I set was a recovery slide built from a foam chassis and a rubber outsole, with a forefoot cavity for a removable insert and room under it for small embedded hardware. Two more products were to share the same platform so that one set of outsole tooling serves a whole range."
+  ],
+  "requirements": [
+   {
+    "t": "Fit",
+    "d": "US men's 9, 2E wide last: about 106 mm across the ball of the foot, with room for the toes to spread."
+   },
+   {
+    "t": "Construction",
+    "d": "Two moulded parts per shoe: an EVA-type foam chassis and a rubber outsole. Straps are moulded with the chassis."
+   },
+   {
+    "t": "Footbed",
+    "d": "Raised heel cup rim, medial arch support, a toe bar and a textured surface that does not trap water."
+   },
+   {
+    "t": "Modularity",
+    "d": "A forefoot insert that lifts out by hand, over a cavity sized for a small sealed electronics pod."
+   },
+   {
+    "t": "Platform",
+    "d": "One last, rocker and outsole outline shared by a slide, a sandal and a clog."
+   },
+   {
+    "t": "Mouldability",
+    "d": "Draft on every wall that releases from the tool, and a parting line that runs along a single clean edge."
+   }
+  ],
+  "concept": [
+   "Everything starts from one last outline drawn in plan: a rounded heel, a waist pulled in on the medial side and a forefoot wide enough for a 2E fit, with the toe set slightly to the big-toe side. The chassis, the outsole and every upper are generated from that outline, so a change to the last carries through all three shoes.",
+   "The split between foam and rubber sits on the rocker line at the bottom of the chassis. The outsole is offset 0.8 mm outside the foam, so the parting line reads as a deliberate shadow gap rather than a flash line, and the foam sidewall flares outward 3 mm toward the bottom to give the chassis draft out of the top half of the tool."
+  ],
+  "design": [
+   "<strong>Chassis.</strong> The foam is 34 mm thick at the heel and 25 mm at the forefoot on the slide, a 9 mm drop. The sole rocks up 17 mm at the toe and bevels 6 mm at the heel, so the shoe rolls through a step instead of slapping. The footbed rises 7 mm at the heel rim, 10 mm under the medial arch and 3 mm at the toe bar, and the heel cup sits 4 mm below the surrounding foam.",
+   "<strong>Footbed texture.</strong> Low domes, 4.2 mm across and 1.2 mm high, are laid on a hexagonal 7.2 mm pitch and stop 11 mm short of the rim. They are shallow enough to release from a mould without undercuts and open enough for water to drain between them.",
+   "<strong>Insert and pod.</strong> The slide's forefoot pocket is 8 mm deep with a rounded-square outline 81 by 67 mm. The insert is 7.6 mm thick with 0.9 mm clearance all round and a ribbed top on a 6.5 mm wave. Under the pocket floor a 38 by 26 by 7 mm cavity holds a sealed 36.6 by 24.6 mm pod, and a finger scoop at the front edge lets the insert be lifted out without tools.",
+   "<strong>Uppers.</strong> The slide carries a single 9 mm strap, 82 mm wide at the crown, rising 50 mm above the footbed and leaning 6 mm back toward the ankle, with eight 5.2 mm vents. The sandal swaps it for two crossing straps and adds an ankle strap on moulded side posts with riveted pivots. The clog closes the forefoot with a shell that rises from 40 mm at the toe to 58 mm at the throat, has five transverse slot vents and a rolled collar, and carries the same pivoting heel strap.",
+   "<strong>Outsole.</strong> All three outsoles have a continuous perimeter rim lug for edge grip and wear. Inside it, the slide uses chevron bars 2.2 mm deep, while the sandal and clog use short lugs on alternating angles, 3.2 mm and 2.6 mm deep. The waist is left clear for the size and brand marks."
+  ],
+  "decisions": [
+   {
+    "q": "Why mould the straps with the chassis instead of attaching them?",
+    "a": [
+     "Every joint in a shoe is a place it can fail and an operation someone is paid for. Moulding the straps with the foam keeps the slide and the sandal at two parts, removes gluing from the line, and means the strap cannot peel off at the footbed edge, which is where attached straps usually fail."
+    ]
+   },
+   {
+    "q": "Why a perimeter rim lug on every outsole?",
+    "a": [
+     "The edge of an outsole takes the first contact on a slope and the most wear on the heel. A continuous rim gives grip at the edge, protects the ends of the interior lugs from tearing, and gives the foam above it a straight, supported line to sit on, which keeps the parting line clean along the whole shoe."
+    ]
+   },
+   {
+    "q": "Why put the hardware under the insert rather than in the heel?",
+    "a": [
+     "The forefoot already needs a pocket for the insert, so the pod cavity costs one extra core in the tool rather than a second opening. The pod comes out with the insert lifted, the user's heel stays on solid foam where the load is highest, and the pod sits under the ball of the foot, which is where pressure and step data are most useful."
+    ]
+   },
+   {
+    "q": "Why share one platform across three shoes?",
+    "a": [
+     "Outsole tooling is the expensive part of a moulded shoe. With one last, one rocker and one outsole outline, the three products differ only in the upper and the tread insert of the outsole tool, so the range can grow without a full new tool set for each style."
+    ]
+   }
+  ],
+  "manufacturing": [
+   "<strong>Chassis:</strong> injection-moulded EVA-type foam, split at the rocker line. The 3 mm sidewall flare gives draft out of the upper half of the tool; the footbed texture, vents and insert pocket all release in the same direction.",
+   "<strong>Outsole:</strong> moulded rubber, 6 mm base plus lugs, offset 0.8 mm proud of the foam so the parting line sits in a shadow gap.",
+   "<strong>Insert:</strong> a separate moulded part in a contrasting compound; it drops in and lifts out by hand at the finger scoop.",
+   "<strong>Bought in:</strong> steel pivot rivets for the sandal and clog straps, the sealed electronics pod for the slide.",
+   "<strong>Production note:</strong> these are concept surfaces built in Blender. For tooling, the chassis and outsole would be rebuilt as closed NURBS solids in SolidWorks, with draft angles checked face by face and alignment channels added at the foam and rubber interface."
+  ],
+  "outcome": [
+   "Three distinct shoes from one last outline and one outsole outline.",
+   "Each slide and sandal is two moulded parts plus, where fitted, a strap and rivets; no stitching or glued straps.",
+   "A removable forefoot insert over a dedicated hardware cavity, lifted out by hand.",
+   "Footbed, tread and branding all release in one pull direction, with the parting line on a single clean edge.",
+   "A complete render set for each product, including an exploded view of the slide's construction."
+  ],
+  "learned": [
+   "Building every shoe from the same outline paid off more than any single feature: changing the last once moved the chassis, outsole and all three uppers together. Next I would add the alignment channels at the foam and rubber interface, pin down the draft angle face by face, and rebuild the chassis as a NURBS solid so it can go to tooling and to a 1:1 print for fit testing in a second size."
+  ]
+ },
+ {
   "slug": "zenith-knife",
   "title": "Zenith Knife",
   "cat": "Product Design",
