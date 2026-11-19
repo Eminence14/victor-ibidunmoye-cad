@@ -970,10 +970,11 @@ window.PROJECTS = [
   "cat": "Product Design",
   "featured": true,
   "folder": "Recovery Slide Family",
-  "status": "Concept CAD and renders complete; production solids not started",
+  "status": "Concept CAD and renders complete; production solids not completed",
   "role": "Product designer: last outline, footbed sculpting, chassis and outsole split, strap and insert design, renders",
   "tools": [
    "Blender",
+   "SolidWorks",
    "Python",
    "Rendering"
   ],
